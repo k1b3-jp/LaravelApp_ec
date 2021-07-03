@@ -17,6 +17,7 @@ class ShopController extends Controller
 
     public function myCart()
     {
+        $this->middleware('auth');
         $carts = Cart::all();
         return view('mycart',compact('carts'));
     }

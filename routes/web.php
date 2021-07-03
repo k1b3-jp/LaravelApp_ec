@@ -21,4 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/mycart', 'ShopController@myCart');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/mycart', 'ShopController@myCart');    
+ });
