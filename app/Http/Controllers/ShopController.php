@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Stock;
 
 use Illuminate\Http\Request;
@@ -12,5 +13,11 @@ class ShopController extends Controller
     {
         $stocks = Stock::Paginate(6);
         return view('shop',compact('stocks'));
+    }
+
+    public function myCart()
+    {
+        $carts = Cart::all();
+        return view('mycart',compact('carts'));
     }
 }
