@@ -46,6 +46,7 @@ class ShopController extends Controller
 
     public function checkout(Cart $cart)
     {
+        $checkout_info = $cart->checkoutCart();
         return view('checkout');
     }
 }
