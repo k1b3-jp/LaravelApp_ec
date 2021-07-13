@@ -17,8 +17,8 @@ class ShopController extends Controller
 
     public function myCart(Cart $cart)
     {
-       $my_carts = $cart->showCart();
-       return view('mycart',compact('my_carts'));
+        $data = $cart->showCart();
+        return view('mycart',$data);
     }
 
     public function addMycart(Request $request,Cart $cart)
@@ -28,17 +28,19 @@ class ShopController extends Controller
        $message = $cart->addCart($stock_id);
 
        //追加後の情報を取得
-       $my_carts = $cart->showCart();
-
-       return view('mycart',compact('my_carts' , 'message'));
+       $data = $cart->showCart();
+       
+       return view('mycart', $data)->with('message',$message);
     }
+
     public function deleteCart(Request $request,Cart $cart)
     {
         $stock_id=$request->stock_id;
         $message = $cart->deleteCart($stock_id);
 
         //削除後のカート情報表示
-        $my_carts = $cart->showCart();
-        return view('mycart',compact('my_carts' , 'message'));
+        $data = $cart->showCart();
+
+        return view('mycart',$data)->with('message',$message);
     }
 }
